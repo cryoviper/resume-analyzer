@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fitcheck · Resume Analyzer</title>
+  <meta name="description" content="Check your resume against a job description: match score, missing skills and clear tips. Runs in your browser; your resume never leaves your device.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23143B36'/%3E%3Crect x='9' y='7' width='14' height='18' rx='2' fill='%23F3EFE6'/%3E%3Cpath d='M12 16.5l2.5 2.5 5-5' fill='none' stroke='%23E2763B' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>Fitcheck</div>
+    <p class="priv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Runs in your browser. Nothing is uploaded.</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Does your resume <em>fit the job?</em></h1>
+      <p>Add your resume and a job description. Get a match score, the skills you're missing, and clear fixes for your bullets.</p>
+    </section>
+
+    <form id="form" class="inputs" novalidate>
+      <div class="box">
+        <div class="box-head">
+          <label for="resume"><span class="n">1</span>Your resume</label>
+          <div class="box-acts">
+            <label class="file btn sm"><input type="file" id="file" accept=".pdf,.txt,.md,application/pdf,text/plain" hidden>Upload PDF or TXT</label>
+            <button type="button" class="link" id="sample">Use a sample</button>
+          </div>
+        </div>
+        <div class="drop" id="drop">
+          <textarea id="resume" placeholder="Paste your resume text here, or drop a PDF onto this box"></textarea>
+          <div class="drop-hint" aria-hidden="true">Drop your PDF here</div>
+        </div>
+        <p class="note" id="fileNote"></p>
+      </div>
+      <div class="box">
+        <div class="box-head">
+          <label for="job"><span class="n">2</span>Job description <small>(optional, but recommended)</small></label>
+          <button type="button" class="link" id="sampleJob">Use a sample job</button>
+        </div>
+        <textarea id="job" placeholder="Paste the job post you're applying for"></textarea>
+      </div>
+      <div class="go">
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn primary" type="submit">Check my resume</button>
+      </div>
+    </form>
+
+    <section id="results" class="results" hidden aria-live="polite">
+      <div class="score-card">
+        <div class="gauge" id="gauge" role="img">
+          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="g-bg"/><circle cx="60" cy="60" r="50" class="g-fg" id="gaugeArc"/></svg>
+          <div><b id="scoreNum">0</b><small>/100</small></div>
+        </div>
+        <div class="score-text">
+          <p class="eyebrow" id="scoreLabel"></p>
+          <h2 id="scoreHead"></h2>
+          <p id="scoreSub" class="muted"></p>
+        </div>
+      </div>
+
+      <div class="cols">
+        <section class="panel" aria-labelledby="bdH">
+          <h3 id="bdH">Score breakdown</h3>
+          <ul class="parts" id="parts"></ul>
+        </section>
+        <section class="panel" aria-labelledby="skH">
+          <h3 id="skH">Skills</h3>
+          <div id="skillsBox"></div>
+        </section>
+      </div>
+
+      <div class="cols">
+        <section class="panel" aria-labelledby="secH">
+          <h3 id="secH">Sections found</h3>
+          <ul class="checks" id="sections"></ul>
+        </section>
+        <section class="panel" aria-labelledby="wrH">
+          <h3 id="wrH">Writing</h3>
+          <dl class="stats" id="writing"></dl>
+          <div id="weakBox"></div>
+        </section>
+      </div>
+
+      <section class="panel tips" aria-labelledby="tipH">
+        <h3 id="tipH">Top fixes</h3>
+        <ol id="tips"></ol>
+      </section>
+    </section>
+  </main>
+
+  <footer class="foot">Built by <a href="https://github.com/cryoviper" target="_blank" rel="noopener">Praveen Sinwar</a> · <a href="https://github.com/cryoviper/resume-analyzer" target="_blank" rel="noopener">Source</a> · PDF reading by Mozilla PDF.js</footer>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "resume-analyzer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "In-browser resume analyzer: job match score, missing skills and writing tips. No build step.",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "node --test test/*.test.js"
+  }
+}
